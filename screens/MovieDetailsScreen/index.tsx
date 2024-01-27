@@ -169,7 +169,15 @@ const MovieDetailsScreen = ({ navigation, route }: any) => {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.conatainerBtn} onPress={() => navigation.push("SeatBooking")}>
+      <TouchableOpacity
+        style={styles.conatainerBtn}
+        onPress={() =>
+          navigation.push("SeatBooking", {
+            BgImage: baseImagePath("w780", movieData.backdrop_path),
+            PosterImage: baseImagePath("original", movieData.poster_path),
+          })
+        }
+      >
         <View style={styles.boxBtn}>
           <Ionicons name="ticket-outline" style={styles.iconTicket} />
           <Text style={styles.buttonText}>Đặt vé</Text>
