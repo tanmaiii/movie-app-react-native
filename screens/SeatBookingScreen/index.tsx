@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   FlatList,
   ToastAndroid,
+  Alert,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import styles from "./style";
@@ -14,7 +16,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { baseImagePath } from "../../api/apicalls";
 import { COLORS, SPACING } from "../../theme/theme";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import EncryptedStorage from "react-native-encrypted-storage";
 
 import * as SecureStore from "expo-secure-store";
 
@@ -77,8 +78,6 @@ const SeatBookingScreen = ({ navigation, route }: any) => {
   const [selectedDateIndex, setSelectedDateIndex] = useState<any>(0);
   const [selectedTimeIndex, setSelectedTimeIndex] = useState<any>(0);
 
-  console.log(dateArray);
-
   const selectSeat = (index: number, subindex: number, num: number) => {
     if (!twoDSeatArray[index][subindex].taken) {
       let array: any = [...selectedSeatArray];
@@ -115,16 +114,6 @@ const SeatBookingScreen = ({ navigation, route }: any) => {
             ticketImage: route.params.PosterImage,
           })
         );
-
-        // await EncryptedStorage.setItem(
-        //   "ticket",
-        //   JSON.stringify({
-        //     seatArray: selectedSeatArray,
-        //     time: timeArray[selectedTimeIndex],
-        //     date: dateArray[selectedDateIndex],
-        //     ticketImage: route.params.PosterImage,
-        //   })
-        // );
       } catch (error) {
         console.error("Something went Wrong while storing in BookSeats Functions", error);
       }
@@ -135,11 +124,16 @@ const SeatBookingScreen = ({ navigation, route }: any) => {
         ticketImage: route.params.PosterImage,
       });
     } else {
-      ToastAndroid.showWithGravity(
-        "Hãy chọn vị trí, ngày, thời gian trước khi đặt vé.",
-        ToastAndroid.SHORT,
-        ToastAndroid.BOTTOM
-      );
+      if (Platform.OS === "android") {
+        ToastAndroid.show("Hãy chọn vị trí, ngày, thời gian trước khi đặt vé.", ToastAndroid.SHORT);
+      } else {
+        Alert.alert("Hãy chọn vị trí, ngày, thời gian trước khi đặt vé.");
+      }
+      // ToastAndroid.showWithGravity(
+      //   "Hãy chọn vị trí, ngày, thời gian trước khi đặt vé.",
+      //   ToastAndroid.SHORT,
+      //   ToastAndroid.BOTTOM
+      // );
     }
   };
 
@@ -271,7 +265,7 @@ const SeatBookingScreen = ({ navigation, route }: any) => {
           <Text style={styles.totalPriceText}>Tổng tiền</Text>
           <Text style={styles.price}>{price} VND</Text>
         </View>
-        <TouchableOpacity onPress={BookSeats}>
+        <TouchableOpacity style={styles.boxButton} onPress={BookSeats}>
           <Text style={styles.buttonText}>Đặt ngay</Text>
         </TouchableOpacity>
       </View>

@@ -3,7 +3,7 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons"
 import styles from './style'
 
-export default function index(props) {
+export default function index(props: any) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.iconBG} onPress={() => props.action()}>

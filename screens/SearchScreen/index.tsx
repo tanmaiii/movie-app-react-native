@@ -1,8 +1,8 @@
-import { View, Text, StatusBar, FlatList, Dimensions } from "react-native";
-import React, { useState } from "react";
+import { View, Text, StatusBar, FlatList, Dimensions, Keyboard } from "react-native";
+import React, { useEffect, useState } from "react";
 import styles from "./style";
 import InputHeader from "../../components/InputHeader";
-import { baseImagePath, searchMovies } from "../../api/apicalls";
+import { baseImagePath, popularMovies, searchMovies } from "../../api/apicalls";
 import SubMovieCard from "../../components/SubMovieCard";
 import { SPACING } from "../../theme/theme";
 
@@ -10,22 +10,37 @@ const { width, height } = Dimensions.get("window");
 
 const SearchScreen = ({ navigation }: any) => {
   const [searchList, setSearchList] = useState<any>([]);
+  const [keyword, setKeyword] = useState<string>("");
 
-  const searchMovieFunction = async (name: string) => {
-    try {
-      let response = await fetch(searchMovies(name));
-      let json = await response.json();
-      setSearchList(json.results);
-    } catch (error) {
-      console.error("Lỗi searchMovieFunction", error);
-    }
+  const searchMovieFunction = () => {
+    Keyboard.dismiss();
   };
+
+  useEffect(() => {
+    let response = null;
+    const getList = async () => {
+      if (keyword.length === 0) {
+        response = await fetch(popularMovies);
+        let json = await response.json();
+        setSearchList(json.results);
+      } else {
+        response = await fetch(searchMovies(keyword));
+        let json = await response.json();
+        setSearchList(json.results);
+      }
+    };
+    getList();
+  }, [keyword]);
 
   return (
     <View style={styles.container}>
       <StatusBar hidden />
       <View style={styles.InputHeaderContainer}>
-        <InputHeader searchFunction={searchMovieFunction} />
+        <InputHeader
+          searchFunction={searchMovieFunction}
+          keyword={keyword}
+          setKeyword={setKeyword}
+        />
       </View>
       <View>
         {searchList.length === 0 ? (

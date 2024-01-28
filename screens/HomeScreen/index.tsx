@@ -59,6 +59,7 @@ const HomeScreen = ({ navigation }: any) => {
   const [nowPlayingMoviesList, setNowPlayingMoviesList] = useState<any>(undefined);
   const [popularMoviesList, setPopularMoviesList] = useState<any>(undefined);
   const [upcomingMoviesList, setUpcomingMoviesList] = useState<any>(undefined);
+  const [keyword, setKeyword] = useState<string>("");
 
   useEffect(() => {
     (async () => {
@@ -94,7 +95,11 @@ const HomeScreen = ({ navigation }: any) => {
         <StatusBar hidden />
 
         <View style={styles.InputHeaderContainer}>
-          <InputHeader searchFunction={searchMovieFunction} />
+          <InputHeader
+            searchFunction={searchMovieFunction}
+            keyword={keyword}
+            setKeyword={setKeyword}
+          />
         </View>
 
         <View style={styles.loadingContainer}>
@@ -109,7 +114,11 @@ const HomeScreen = ({ navigation }: any) => {
       <StatusBar hidden />
 
       <View style={styles.InputHeaderContainer}>
-        <InputHeader searchFunction={searchMovieFunction} />
+        <InputHeader
+          searchFunction={searchMovieFunction}
+          keyword={keyword}
+          setKeyword={setKeyword}
+        />
       </View>
       <CategoryHeader title={"Phim đang chiếu"} />
 
@@ -155,6 +164,7 @@ const HomeScreen = ({ navigation }: any) => {
       <FlatList
         data={popularMoviesList}
         keyExtractor={(item: any) => item.id}
+        snapToInterval={width / 3 + SPACING.space_36}
         horizontal
         bounces={false}
         showsHorizontalScrollIndicator={false}
@@ -177,6 +187,7 @@ const HomeScreen = ({ navigation }: any) => {
       <FlatList
         data={upcomingMoviesList}
         keyExtractor={(item: any) => item.id}
+        snapToInterval={width / 3 + SPACING.space_36}
         horizontal
         bounces={false}
         showsHorizontalScrollIndicator={false}

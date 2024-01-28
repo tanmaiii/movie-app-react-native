@@ -160,7 +160,7 @@ const MovieDetailsScreen = ({ navigation, route }: any) => {
                   cardWidth={80}
                   isFirst={index == 0 ? true : false}
                   isLast={index == movieCastData?.length - 1 ? true : false}
-                  imagePath={baseImagePath("w185", item.profile_path)}
+                  imagePath={item.profile_path ? baseImagePath("w185", item.profile_path) : undefined}
                   title={item?.original_name}
                   // subtitle={item.character}
                 />

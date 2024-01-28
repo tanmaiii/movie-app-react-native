@@ -4,10 +4,14 @@ import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from "../../theme
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
+    overflow: "hidden",
   },
   cardImage: {
     aspectRatio: 1920 / 2880,
     borderRadius: BORDERRADIUS.radius_25 * 4,
+    objectFit: 'cover',
+    width: '100%',
+    height: 'auto'
   },
   title: {
     alignSelf: "stretch",

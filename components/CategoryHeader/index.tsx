@@ -10,7 +10,6 @@ const CategoryHeader = (props: any) => {
 const styles = StyleSheet.create({
   text: {
       fontSize: FONTSIZE.size_20,
-      fontFamily: FONTFAMILY.poppins_light,
       fontWeight: '900',
       color: COLORS.White,
       paddingHorizontal: SPACING.space_36,

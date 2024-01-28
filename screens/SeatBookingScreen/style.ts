@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   buttonPriceContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems : "center",
+    alignItems: "center",
     paddingHorizontal: SPACING.space_36,
     paddingVertical: SPACING.space_18,
   },
@@ -115,21 +115,22 @@ const styles = StyleSheet.create({
   },
   totalPriceText: {
     color: COLORS.WhiteRGBA32,
-    fontSize: FONTSIZE.size_16
-
+    fontSize: FONTSIZE.size_16,
   },
   price: {
     color: COLORS.White,
-    fontSize: FONTSIZE.size_30
+    fontSize: FONTSIZE.size_30,
   },
-  buttonText: {
+  boxButton: {
     backgroundColor: COLORS.Orange,
     paddingHorizontal: SPACING.space_36,
     paddingVertical: SPACING.space_16,
+    borderRadius: BORDERRADIUS.radius_25,
+  },
+  buttonText: {
     color: COLORS.White,
     fontSize: FONTSIZE.size_20,
     fontWeight: "700",
-    borderRadius: BORDERRADIUS.radius_25,
   },
 });
 

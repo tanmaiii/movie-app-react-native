@@ -3,6 +3,8 @@ import React from "react";
 import styles from "./style";
 import { SPACING } from "../../theme/theme";
 
+const img = require("../../assets/image/barcode.png");
+
 const index = (props: any) => {
   return (
     <View
@@ -18,11 +20,20 @@ const index = (props: any) => {
         { maxWidth: props.cardWidth },
       ]}
     >
-      <Image
-        source={{ uri: props.imagePath }}
-        style={[styles.cardImage, { width: props.cardWidth }]}
-      />
-      <Text style={styles.title} numberOfLines={1}>{props.title}</Text>
+      {props?.imagePath ? (
+        <Image
+          source={{ uri: props?.imagePath }}
+          style={[styles.cardImage, { width: props.cardWidth }]}
+        />
+      ) : (
+        <Image
+          source={require("../../assets/image/avatar.jpg")}
+          style={[styles.cardImage, { width: props.cardWidth }]}
+        />
+      )}
+      <Text style={styles.title} numberOfLines={1}>
+        {props.title}
+      </Text>
       <Text style={styles.subtitle} numberOfLines={1}>
         {props.subtitle}
       </Text>

@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     borderRadius: BORDERRADIUS.radius_20,
   },
   textTitle: {
-    fontFamily: FONTFAMILY.poppins_regular,
     fontSize: FONTSIZE.size_16,
     color: COLORS.White,
     textAlign: "center",

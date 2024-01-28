@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
   },
   containerGap36: {
     gap: SPACING.space_36,
+    paddingBottom: 100
+
   },
   ContainerNotFound: {
     display: 'flex',

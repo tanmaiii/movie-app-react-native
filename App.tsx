@@ -11,7 +11,6 @@ import TabNavigator from "./navigators/TabNavigator";
 
 import { COLORS } from "./theme/theme";
 
-
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -30,7 +29,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-   // marginTop: 20,
+    // marginTop: 20,
     flex: 1,
   },
 });
